@@ -147,7 +147,7 @@ in
     extraGroups = ["wheel"];
     shell = "/run/current-system/sw/bin/zsh";
     openssh.authorizedKeys.keys = [
-      builtins.readFile ./id_adnelson.pub
+      (builtins.readFile ./id_adnelson.pub)
     ];
   };
 }
