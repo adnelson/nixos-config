@@ -146,5 +146,8 @@ in
     description = "Allen Nelson";
     extraGroups = ["wheel"];
     shell = "/run/current-system/sw/bin/zsh";
+    authorizedKeys = [
+      builtins.readFile ./id_adnelson.pub
+    ];
   };
 }
