@@ -146,7 +146,7 @@ in
     description = "Allen Nelson";
     extraGroups = ["wheel"];
     shell = "/run/current-system/sw/bin/zsh";
-    authorizedKeys = [
+    authorizedKeys.keys = [
       builtins.readFile ./id_adnelson.pub
     ];
   };
