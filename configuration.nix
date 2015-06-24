@@ -46,6 +46,9 @@
   networking.hostName = "blibberblob"; # Define your hostname.
   networking.hostId = "f02ca7ee";
 
+  # Disable firewall
+  networking.firewall.allowPing = true;
+  
   # Select internationalisation properties.
   i18n = {
     consoleFont = "lat9w-16";
