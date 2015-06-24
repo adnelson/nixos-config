@@ -46,8 +46,9 @@
   networking.hostName = "blibberblob"; # Define your hostname.
   networking.hostId = "f02ca7ee";
 
-  # Disable firewall
+  # Allow ping and enable some ports. Note port 22 is open because SSH is on.
   networking.firewall.allowPing = true;
+  networking.firewall.allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
   
   # Select internationalisation properties.
   i18n = {
