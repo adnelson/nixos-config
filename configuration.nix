@@ -12,7 +12,7 @@ let
     nameservers = [ "8.8.8.8" "4.4.4.4" ];
     interfaces.enp3s0.ip4 = [{
       address = "10.0.248.12";
-      prefixlength = 22;
+      prefixLength = 22;
     }];
     firewall = {
       allowPing = true;
