@@ -4,6 +4,23 @@
 
 { config, pkgs, ... }:
 
+let
+  networking = {
+    hostName = "blibberblob";
+    hostId = "f02ca7ee";
+    defaultGateway = "10.0.248.1";
+    nameservers = [ "8.8.8.8" "4.4.4.4" ];
+    interfaces.enp3s0.ip4 = [{
+      address = "10.0.248.12";
+      prefixlength = 22;
+    }];
+    firewall = {
+      allowPing = true;
+      allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
+    };
+  };
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -42,20 +59,14 @@
   # Set time zone to chicago
   time.timeZone = "America/Chicago";
   
-  # Set hostname and info
-  networking.hostName = "blibberblob"; # Define your hostname.
-  networking.hostId = "f02ca7ee";
-
-  # Allow ping and enable some ports. Note port 22 is open because SSH is on.
-  networking.firewall.allowPing = true;
-  networking.firewall.allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
-  
   # Select internationalisation properties.
   i18n = {
     consoleFont = "lat9w-16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
+
+  inherit networking;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -102,9 +113,7 @@
     xlibs.xinput
     xlibs.xmessage
     xlibs.xmodmap
-  ];
-
-  
+  ];  
 
   # Install some fonts
   fonts = {
