@@ -131,20 +131,20 @@ in
   };
 
   # Start emacs daemon.
-  systemd.user.services.emacsDaemon = let path = config.system.path; in {
-    enabled = true;
-    description = "Emacs Daemon";
-    environment.GTK_DATA_PREFIX = path;
-    environment.SSH_AUTH_SOCK = "%t/ssh-agent";
-    environment.GTK_PATH = "${path}/lib/gtk-3.0:${path}/lib/gtk-2.0";
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "${pkgs.emacs}/bin/emacs --daemon";
-      ExecStop = "${pkgs.emacs}/bin/emacsclient --eval (kill-emacs)";
-      Restart = "always";
-    };
-    wantedBy = [ "default.target" ];
-  };
+#  systemd.user.services.emacsDaemon = let path = config.system.path; in {
+#    enabled = true;
+#    description = "Emacs Daemon";
+#    environment.GTK_DATA_PREFIX = path;
+#    environment.SSH_AUTH_SOCK = "%t/ssh-agent";
+#    environment.GTK_PATH = "${path}/lib/gtk-3.0:${path}/lib/gtk-2.0";
+#    serviceConfig = {
+#      Type = "forking";
+#      ExecStart = "${pkgs.emacs}/bin/emacs --daemon";
+#      ExecStop = "${pkgs.emacs}/bin/emacsclient --eval (kill-emacs)";
+#      Restart = "always";
+#    };
+#    wantedBy = [ "default.target" ];
+#  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
