@@ -150,7 +150,7 @@ in
   services.openssh.enable = true;
 
   # NFS for vagrant osx file sharing.
-  services.nfs.enable = true;
+  services.nfs.server.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
