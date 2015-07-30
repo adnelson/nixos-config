@@ -39,7 +39,7 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    windowManage.i3.enable = true;
+    windowManager.i3.enable = true;
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
