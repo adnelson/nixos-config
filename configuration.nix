@@ -10,7 +10,6 @@ let
     hostId = "f02ca7ee";
     defaultGateway = "10.0.248.1";
     nameservers = [
-      "10.0.12.51"
       "8.8.8.8"
       "4.4.4.4"
     ];
