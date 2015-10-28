@@ -10,9 +10,9 @@ let
     hostId = "f02ca7ee";
     defaultGateway = "10.0.248.1";
     nameservers = [
+      "10.0.12.51"
       "8.8.8.8"
       "4.4.4.4"
-      "10.0.12.51"
     ];
     interfaces.enp3s0.ip4 = [{
       address = "10.0.248.12";
