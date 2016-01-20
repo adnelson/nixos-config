@@ -174,4 +174,10 @@ in
       (builtins.readFile ./id_adnelson.pub)
     ];
   };
+  users.extraUsers.guest = {
+    isNormalUser = true;
+    home = "/home/guest";
+    description = "Guest account";
+    shell = "/run/current-system/sw/bin/zsh";
+  };
 }
