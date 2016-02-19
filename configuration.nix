@@ -47,10 +47,9 @@ in
     videoDrivers = [ "nvidia" ];
     # windowManager.i3.enable = true;
     windowManager.xmonad.enable = true;
-    windowManager.xmonad.enableContribAndExtras = true;
     windowManager.xmonad.extraPackages = haskellPackages: [
       haskellPackages.xmobar
-      haskellPackages.xmonad-contrib
+      haskellPackages.xmonadContrib
     ];
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
