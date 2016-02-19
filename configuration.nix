@@ -36,10 +36,12 @@ in
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
 
+  # Start up the ssh agent on login
+  programs.ssh.startAgent = true;
+
   # Allows NVidia drivers to be installed
   nixpkgs.config.allowUnfree = true;
   services.xserver = {
-    startOpenSSHAgent = true;
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
