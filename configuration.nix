@@ -101,7 +101,6 @@ in
     htop
     irssi
     jwhois
-    keychain
     lsof
     man
     netcat
