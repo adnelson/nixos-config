@@ -50,6 +50,7 @@ in
     windowManager.xmonad.enableContribAndExtras = true;
     windowManager.xmonad.extraPackages = haskellPackages: [
       haskellPackages.xmobar
+      haskellPackages.xmonad-contrib
     ];
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
