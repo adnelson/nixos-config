@@ -96,6 +96,7 @@ in
     file
     firefoxWrapper
     gitMinimal
+    haskellPackages.xmobar
     hdparm
     htop
     irssi
