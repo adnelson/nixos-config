@@ -45,9 +45,13 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    windowManager.i3.enable = true;
-    # windowManager.xmonad.enable = true;
-    # windowManager.default = "xmonad";
+    # windowManager.i3.enable = true;
+    windowManager.xmonad.enable = true;
+    windowManager.xmonad.enableContribAndExtras = true;
+    windowManager.xmonad.extraPackages = haskellPackages: [
+      haskellPackages.xmobar
+    ];
+    windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
@@ -120,12 +124,6 @@ in
     xpdf
     zip
     zsh
-
-    # Haskell packages for XMonad
-    haskellPackages.xmobar
-    haskellPackages.xmonad
-    haskellPackages.xmonadContrib
-    haskellPackages.xmonadExtras
   ];  
 
   # Install some fonts
