@@ -124,7 +124,7 @@ in
     xpdf
     zip
     zsh
-  ];  
+  ];
 
   # Install some fonts
   fonts = {
