@@ -47,10 +47,8 @@ in
     videoDrivers = [ "nvidia" ];
     # windowManager.i3.enable = true;
     windowManager.xmonad.enable = true;
-    windowManager.xmonad.extraPackages = haskellPackages: [
-      haskellPackages.xmobar
-      haskellPackages.xmonadContrib
-    ];
+    windowManager.xmonad.extraPackages = haskellPackages: (
+      with haskellPackages; [ xmobar xmonadContrib yeganesh ]);
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
@@ -106,10 +104,12 @@ in
     netcat
     nmap
     rxvt_unicode
+    scrot
     sdparm
     stdmanpages
     tcpdump
     telnet
+    terminator
     tmux
     unzip
     vagrant
