@@ -39,10 +39,13 @@ in
   # Allows NVidia drivers to be installed
   nixpkgs.config.allowUnfree = true;
   services.xserver = {
+    startOpenSSHAgent = true;
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
     windowManager.i3.enable = true;
+    # windowManager.xmonad.enable = true;
+    # windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
@@ -74,47 +77,53 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    firefoxWrapper
     acpitool
     alsaLib
     alsaPlugins
     alsaUtils
     cpufrequtils
     cryptsetup
+    curl
     ddrescue
     dmenu
     emacs
     file
+    firefoxWrapper
+    gitMinimal
     hdparm
     htop
-    keychain
-    sdparm
-    zsh
     irssi
-    gitMinimal
     jwhois
+    keychain
     lsof
     man
     netcat
     nmap
-    vagrant
-    tmux
+    rxvt_unicode
+    sdparm
     stdmanpages
     tcpdump
     telnet
-    zip
+    tmux
     unzip
+    vagrant
     vim
-    vlc
     wget
-    rxvt_unicode
-    xorg.xkill
-    xpdf
     xfontsel
     xlibs.xev
     xlibs.xinput
     xlibs.xmessage
     xlibs.xmodmap
+    xorg.xkill
+    xpdf
+    zip
+    zsh
+
+    # Haskell packages for XMonad
+    haskellPackages.xmobar
+    haskellPackages.xmonad
+    haskellPackages.xmonadContrib
+    haskellPackages.xmonadExtras
   ];  
 
   # Install some fonts
@@ -133,22 +142,6 @@ in
   };
 
   virtualisation.docker.enable = true;
-
-  # Start emacs daemon.
-#  systemd.user.services.emacsDaemon = let path = config.system.path; in {
-#    enabled = true;
-#    description = "Emacs Daemon";
-#    environment.GTK_DATA_PREFIX = path;
-#    environment.SSH_AUTH_SOCK = "%t/ssh-agent";
-#    environment.GTK_PATH = "${path}/lib/gtk-3.0:${path}/lib/gtk-2.0";
-#    serviceConfig = {
-#      Type = "forking";
-#      ExecStart = "${pkgs.emacs}/bin/emacs --daemon";
-#      ExecStop = "${pkgs.emacs}/bin/emacsclient --eval (kill-emacs)";
-#      Restart = "always";
-#    };
-#    wantedBy = [ "default.target" ];
-#  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
