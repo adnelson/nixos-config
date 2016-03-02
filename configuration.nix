@@ -48,7 +48,7 @@ in
     # windowManager.i3.enable = true;
     windowManager.xmonad.enable = true;
     windowManager.xmonad.extraPackages = haskellPackages: (
-      with haskellPackages; [ xmobar xmonadContrib yeganesh ]);
+      with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
@@ -58,7 +58,7 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox to run
-  services.virtualboxHost.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -138,6 +138,10 @@ in
       source-code-pro
       source-sans-pro
       source-serif-pro
+      source-han-sans-japanese
+      source-han-sans-korean
+      source-han-sans-simplified-chinese
+      source-han-sans-traditional-chinese
     ];
   };
 
