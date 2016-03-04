@@ -45,14 +45,15 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
+    displayManager.slim.enable = true;
     # Uncomment this if you want i3 instead of xmonad
-    windowManager.i3.enable = true;
+    # windowManager.i3.enable = true;
 
     # Comment these lines if you don't want xmonad
-    # windowManager.xmonad.enable = true;
-    # windowManager.xmonad.extraPackages = haskellPackages: (
+    windowManager.xmonad.enable = true;
+    windowManager.xmonad.extraPackages = haskellPackages: (
       # Packages that xmonad.hs imports must be included here
-    #  with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
+      with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
     windowManager.default = "i3";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
