@@ -136,7 +136,7 @@ in
     ];
   };
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
   # Start emacs daemon.
 #  systemd.user.services.emacsDaemon = let path = config.system.path; in {
