@@ -62,7 +62,7 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox and docker to run
-  # virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
   # Use NTP for system time
