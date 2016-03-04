@@ -64,7 +64,6 @@ in
 
   # Allow virtualbox and docker to run
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = true;
   virtualisation.docker.enable = true;
 
   # Use NTP for system time
