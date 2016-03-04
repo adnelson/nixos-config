@@ -45,7 +45,6 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    displayManager.slim.enable = true;
     # Uncomment this if you want i3 instead of xmonad
     # windowManager.i3.enable = true;
 
@@ -63,7 +62,7 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox and docker to run
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
   # Use NTP for system time
