@@ -51,7 +51,7 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox to run
-  services.virtualboxHost.enable = true;
+  # services.virtualboxHost.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
