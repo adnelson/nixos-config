@@ -36,25 +36,13 @@ in
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
 
-  # Start up the ssh agent on login
-  programs.ssh.startAgent = true;
-
   # Allows NVidia drivers to be installed
   nixpkgs.config.allowUnfree = true;
   services.xserver = {
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    displayManager.slim.enable = true;
-    # Uncomment this if you want i3 instead of xmonad
-    # windowManager.i3.enable = true;
-
-    # Comment these lines if you don't want xmonad
-    windowManager.xmonad.enable = true;
-    windowManager.xmonad.extraPackages = haskellPackages: (
-      # Packages that xmonad.hs imports must be included here
-      with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
-    windowManager.default = "xmonad";
+    windowManager.i3.enable = true;
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
@@ -62,10 +50,8 @@ in
 
   hardware.opengl.driSupport32Bit = true;
 
-  # Allow virtualbox and docker to run
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = false; 
-  virtualisation.docker.enable = true;
+  # Allow virtualbox to run
+  services.virtualboxHost.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -88,50 +74,48 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    firefoxWrapper
     acpitool
     alsaLib
     alsaPlugins
     alsaUtils
     cpufrequtils
     cryptsetup
-    curl
     ddrescue
     dmenu
     emacs
     file
-    firefoxWrapper
-    gitMinimal
-    haskellPackages.xmobar
     hdparm
     htop
+    keychain
+    sdparm
+    zsh
     irssi
+    gitMinimal
     jwhois
     lsof
     man
     netcat
     nmap
-    rxvt_unicode
-    scrot
-    sdparm
+    vagrant
+    tmux
     stdmanpages
     tcpdump
     telnet
-    terminator
-    tmux
+    zip
     unzip
-    vagrant
     vim
+    vlc
     wget
+    rxvt_unicode
+    xorg.xkill
+    xpdf
     xfontsel
     xlibs.xev
     xlibs.xinput
     xlibs.xmessage
     xlibs.xmodmap
-    xorg.xkill
-    xpdf
-    zip
-    zsh
-  ];
+  ];  
 
   # Install some fonts
   fonts = {
@@ -151,6 +135,24 @@ in
       source-han-sans-traditional-chinese
     ];
   };
+
+  virtualisation.docker.enable = true;
+
+  # Start emacs daemon.
+#  systemd.user.services.emacsDaemon = let path = config.system.path; in {
+#    enabled = true;
+#    description = "Emacs Daemon";
+#    environment.GTK_DATA_PREFIX = path;
+#    environment.SSH_AUTH_SOCK = "%t/ssh-agent";
+#    environment.GTK_PATH = "${path}/lib/gtk-3.0:${path}/lib/gtk-2.0";
+#    serviceConfig = {
+#      Type = "forking";
+#      ExecStart = "${pkgs.emacs}/bin/emacs --daemon";
+#      ExecStop = "${pkgs.emacs}/bin/emacsclient --eval (kill-emacs)";
+#      Restart = "always";
+#    };
+#    wantedBy = [ "default.target" ];
+#  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
