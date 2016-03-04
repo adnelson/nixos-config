@@ -45,6 +45,7 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
+    displayManager.slim.enable = true;
     # Uncomment this if you want i3 instead of xmonad
     # windowManager.i3.enable = true;
 
