@@ -54,7 +54,7 @@ in
     windowManager.xmonad.extraPackages = haskellPackages: (
       # Packages that xmonad.hs imports must be included here
       with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
-    windowManager.default = "i3";
+    windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
