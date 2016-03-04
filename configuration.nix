@@ -45,9 +45,13 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
+    # Uncomment this if you want i3 instead of xmonad
     # windowManager.i3.enable = true;
+
+    # Comment these lines if you don't want xmonad
     windowManager.xmonad.enable = true;
     windowManager.xmonad.extraPackages = haskellPackages: (
+      # Packages that xmonad.hs imports must be included here
       with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
@@ -57,8 +61,10 @@ in
 
   hardware.opengl.driSupport32Bit = true;
 
-  # Allow virtualbox to run
+  # Allow virtualbox and docker to run
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
+  virtualisation.docker.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -144,8 +150,6 @@ in
       source-han-sans-traditional-chinese
     ];
   };
-
-  virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
