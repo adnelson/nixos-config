@@ -110,6 +110,7 @@ in
     man
     netcat
     nmap
+    python
     rxvt_unicode
     scrot
     sdparm
