@@ -92,6 +92,7 @@ in
     alsaLib
     alsaPlugins
     alsaUtils
+    ansible
     awscli
     cpufrequtils
     cryptsetup
