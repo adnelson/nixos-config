@@ -92,6 +92,7 @@ in
     alsaLib
     alsaPlugins
     alsaUtils
+    awscli
     cpufrequtils
     cryptsetup
     curl
