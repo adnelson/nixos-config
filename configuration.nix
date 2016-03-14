@@ -130,6 +130,7 @@ in
     xlibs.xmodmap
     xorg.xkill
     xpdf
+    xscreensaver
     zip
     zsh
   ];
