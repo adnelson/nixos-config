@@ -67,7 +67,7 @@ in
 
   # Allow virtualbox and docker to run
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = false; 
+  virtualisation.virtualbox.guest.enable = false;
   virtualisation.docker.enable = true;
 
   # Use NTP for system time
@@ -78,7 +78,7 @@ in
 
   # Set time zone to chicago
   time.timeZone = "America/Chicago";
-  
+
   # Select internationalisation properties.
   i18n = {
     consoleFont = "lat9w-16";
@@ -146,16 +146,18 @@ in
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      terminus_font
+      gohufont
+      inconsolata
       liberation_ttf
-      ubuntu_font_family
       source-code-pro
-      source-sans-pro
-      source-serif-pro
       source-han-sans-japanese
       source-han-sans-korean
       source-han-sans-simplified-chinese
       source-han-sans-traditional-chinese
+      source-sans-pro
+      source-serif-pro
+      terminus_font
+      ubuntu_font_family
     ];
   };
 
