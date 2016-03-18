@@ -13,7 +13,7 @@ let
       # Google DNS
       "8.8.8.8" "8.8.4.4"
       # Level 3 DNS
-      "4.2.2.1" "4.2.2.2" "4.2.2.3" "4.2.2.4"  
+      "4.2.2.1" "4.2.2.2" "4.2.2.3" "4.2.2.4"
     ];
     interfaces.enp3s0.ip4 = [{
       address = "10.0.248.12";
@@ -138,6 +138,8 @@ in
     xorg.xkill
     xpdf
     xscreensaver
+    xsel
+    xclip
     zip
     zsh
   ];
