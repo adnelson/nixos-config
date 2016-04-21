@@ -8,16 +8,16 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b5e0d684-0319-4c48-9e24-c92280c788dc";
+    { device = "/dev/disk/by-uuid/6da2a08c-c9be-4f8b-bc20-44f1133bae48";
       fsType = "ext4";
     };
 
   swapDevices = [ ];
 
-  nix.maxJobs = 8;
+  nix.maxJobs = lib.mkDefault 8;
 }
