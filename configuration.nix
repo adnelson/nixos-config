@@ -19,6 +19,10 @@ let
       allowPing = true;
       allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
     };
+    interfaces.enp0s31f6.ip4 = [{
+      address = "10.0.248.12";
+      prefixLength = 22;
+    }];
   };
 in
 
@@ -43,20 +47,26 @@ in
   # Allows NVidia drivers to be installed
   nixpkgs.config.allowUnfree = true;
   services.xserver = {
-    autorun = false;
+    # Set autorun = false if you want to manually start X
+    # autorun = false;
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
     displayManager.slim.enable = true;
-    # Uncomment this if you want i3 instead of xmonad
+    # Uncomment if you want i3
+    # /*
     windowManager.i3.enable = true;
-
-    # Comment these lines if you don't want xmonad
-    # windowManager.xmonad.enable = true;
-    # windowManager.xmonad.extraPackages = haskellPackages: (
-    #  # Packages that xmonad.hs imports must be included here
-    #  with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
     windowManager.default = "i3";
+    # */
+
+    # Uncomment if you want xmonad
+    /*
+    windowManager.xmonad.enable = true;
+    windowManager.xmonad.extraPackages = haskellPackages: (
+     # Packages that xmonad.hs imports must be included here
+     with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
+    windowManager.default = "xmonad";
+    */
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
