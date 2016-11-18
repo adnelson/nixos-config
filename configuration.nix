@@ -190,7 +190,7 @@ in
     isNormalUser = true;
     home = "/home/anelson";
     description = "Allen Nelson";
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "docker"];
     shell = "/run/current-system/sw/bin/zsh";
     openssh.authorizedKeys.keys = [
       (builtins.readFile ./id_adnelson.pub)
