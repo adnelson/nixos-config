@@ -23,6 +23,7 @@ let
       address = "10.0.248.12";
       prefixLength = 22;
     }];
+    wireless.enable = true;
   };
 in
 
@@ -33,7 +34,7 @@ in
     ];
 
   # Set the kernel version here
-  boot.kernelPackages = pkgs.linuxPackages_4_3;
+  boot.kernelPackages = pkgs.linuxPackages_4_4;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -75,9 +76,9 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox and docker to run
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = false;
-  virtualisation.docker.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.guest.enable = false;
+  # virtualisation.docker.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -134,7 +135,6 @@ in
     terminator
     tmux
     unzip
-    vagrant
     vim
     wget
     xfontsel
@@ -144,7 +144,6 @@ in
     xlibs.xmodmap
     xorg.xkill
     xpdf
-    xscreensaver
     xsel
     xclip
     zip
@@ -175,9 +174,6 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # NFS for vagrant osx file sharing.
-  services.nfs.server.enable = true;
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -193,7 +189,7 @@ in
     extraGroups = ["wheel" "docker"];
     shell = "/run/current-system/sw/bin/zsh";
     openssh.authorizedKeys.keys = [
-      (builtins.readFile ./id_adnelson.pub)
+      (builtins.readFile ./id_rsa.pub)
     ];
   };
   users.extraUsers.guest = {
