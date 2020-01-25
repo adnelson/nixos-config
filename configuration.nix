@@ -4,26 +4,29 @@
 
 { config, pkgs, ... }:
 
-let
+let emacsCustom = with pkgs; emacsWithPackages (
+  epkgs: with epkgs; [monokai-theme smex nix-mode haskell-mode reason-mode]
+);
+
   networking = {
     hostName = "blibberblob";
-    hostId = "f02ca7ee";
-    defaultGateway = "10.0.248.1";
-    nameservers = [
-      # Google DNS
-      "8.8.8.8" "8.8.4.4"
-      # Level 3 DNS
-      "4.2.2.1" "4.2.2.2" "4.2.2.3" "4.2.2.4"
-    ];
-    firewall = {
-      allowPing = true;
-      allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
-    };
-    interfaces.enp0s31f6.ip4 = [{
-      address = "10.0.248.12";
-      prefixLength = 22;
-    }];
-    wireless.enable = true;
+    # hostId = "f02ca7ee";
+    # defaultGateway = "10.0.248.1";
+    # nameservers = [
+    #   # Google DNS
+    #   "8.8.8.8" "8.8.4.4"
+    #   # Level 3 DNS
+    #   "4.2.2.1" "4.2.2.2" "4.2.2.3" "4.2.2.4"
+    # ];
+    # firewall = {
+    #   allowPing = true;
+    #   allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
+    # };
+    # interfaces.enp0s31f6.ip4 = [{
+    #   address = "10.0.248.12";
+    #   prefixLength = 22;
+    # }];
+    # wireless.enable = true;
   };
 in
 
@@ -33,13 +36,14 @@ in
       ./hardware-configuration.nix
     ];
 
+  inherit networking;
+
   # Set the kernel version here
-  boot.kernelPackages = pkgs.linuxPackages_4_4;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
 
   # Start up the ssh agent on login
@@ -53,32 +57,21 @@ in
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    displayManager.slim.enable = true;
-    # Uncomment if you want i3
-    # /*
+    displayManager.lightdm.enable = true;
     windowManager.i3.enable = true;
     windowManager.default = "i3";
-    # */
-
-    # Uncomment if you want xmonad
-    /*
-    windowManager.xmonad.enable = true;
-    windowManager.xmonad.extraPackages = haskellPackages: (
-     # Packages that xmonad.hs imports must be included here
-     with haskellPackages; [ xmobar xmonad-contrib yeganesh ]);
-    windowManager.default = "xmonad";
-    */
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
   };
 
-  hardware.opengl.driSupport32Bit = true;
+  # Uncomment to enable opengl
+  # hardware.opengl.driSupport32Bit = true;
 
   # Allow virtualbox and docker to run
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.guest.enable = false;
-  # virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = false;
+  virtualisation.docker.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -86,7 +79,7 @@ in
   # Allow zsh to be used.
   programs.zsh.enable = true;
 
-  # Set time zone to chicago
+  # Set time zone to Chicago
   time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
@@ -96,12 +89,10 @@ in
     defaultLocale = "en_US.UTF-8";
   };
 
-  inherit networking;
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpitool
+    ag
     alsaLib
     alsaPlugins
     alsaUtils
@@ -112,11 +103,10 @@ in
     curl
     ddrescue
     dmenu
-    emacs
+    emacsCustom
     file
     firefoxWrapper
     gitMinimal
-    haskellPackages.xmobar
     hdparm
     htop
     irssi
@@ -125,7 +115,8 @@ in
     man
     netcat
     nmap
-    python
+    postgresql_11
+    python3
     rxvt_unicode
     scrot
     sdparm
@@ -174,17 +165,10 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.anelson = {
+  users.extraUsers.allen = {
     isNormalUser = true;
-    home = "/home/anelson";
+    home = "/home/allen";
     description = "Allen Nelson";
     extraGroups = ["wheel" "docker"];
     shell = "/run/current-system/sw/bin/zsh";
@@ -192,10 +176,7 @@ in
       (builtins.readFile ./id_rsa.pub)
     ];
   };
-  users.extraUsers.guest = {
-    isNormalUser = true;
-    home = "/home/guest";
-    description = "Guest account";
-    shell = "/run/current-system/sw/bin/zsh";
-  };
+
+  users.extraUsers.root.shell = "/run/current-system/sw/bin/zsh";
+  users.extraUsers.root.ssh.startAgent = true;
 }
