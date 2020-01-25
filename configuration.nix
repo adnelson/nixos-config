@@ -143,6 +143,7 @@ in
     xclip
     zip
     zsh
+    pcmanfm
   ];
 
   # Install some fonts
