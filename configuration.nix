@@ -68,6 +68,10 @@ in
   # Uncomment to enable opengl
   # hardware.opengl.driSupport32Bit = true;
 
+  # Enable sound
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Allow virtualbox and docker to run
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = false;
@@ -165,12 +169,15 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Enable sudo.
+  security.sudo.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.allen = {
     isNormalUser = true;
     home = "/home/allen";
     description = "Allen Nelson";
-    extraGroups = ["wheel" "docker"];
+    extraGroups = ["wheel" "docker" "audio"];
     shell = "/run/current-system/sw/bin/zsh";
     openssh.authorizedKeys.keys = [
       (builtins.readFile ./id_rsa.pub)
@@ -178,5 +185,6 @@ in
   };
 
   users.extraUsers.root.shell = "/run/current-system/sw/bin/zsh";
-  users.extraUsers.root.ssh.startAgent = true;
+  # TODO figure this out
+  # users.extraUsers.root.ssh.startAgent = true;
 }
