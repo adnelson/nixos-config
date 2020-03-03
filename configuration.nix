@@ -72,6 +72,8 @@ in
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
     desktopManager.default = "none";
+    autoRepeatDelay = 300;
+    autoRepeatInterval = 30;
   };
 
   # Uncomment to enable opengl
