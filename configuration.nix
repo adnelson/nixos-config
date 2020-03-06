@@ -120,6 +120,7 @@ in
     ddrescue
     dmenu
     emacsCustom
+    feh
     file
     firefoxWrapper
     gitMinimal
