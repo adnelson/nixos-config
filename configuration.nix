@@ -154,6 +154,7 @@ in
     xpdf
     xsel
     xclip
+    xscreensaver
     zip
     zsh
     pcmanfm
