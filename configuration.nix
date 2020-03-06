@@ -17,23 +17,6 @@ let emacsCustom = with pkgs; emacsWithPackages (
 
   networking = {
     hostName = "blibberblob";
-    # hostId = "f02ca7ee";
-    # defaultGateway = "10.0.248.1";
-    # nameservers = [
-    #   # Google DNS
-    #   "8.8.8.8" "8.8.4.4"
-    #   # Level 3 DNS
-    #   "4.2.2.1" "4.2.2.2" "4.2.2.3" "4.2.2.4"
-    # ];
-    # firewall = {
-    #   allowPing = true;
-    #   allowedTCPPorts = [ 80 8000 8001 8002 8003 ];
-    # };
-    # interfaces.enp0s31f6.ip4 = [{
-    #   address = "10.0.248.12";
-    #   prefixLength = 22;
-    # }];
-    # wireless.enable = true;
   };
 in
 
@@ -154,6 +137,7 @@ in
     xpdf
     xsel
     xclip
+    xmobar
     xscreensaver
     zip
     zsh
