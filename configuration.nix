@@ -67,7 +67,7 @@ in
     displayManager.lightdm.enable = true;
     # windowManager.i3.enable = true;
     windowManager.xmonad.enable = true;
-    windowManager.xmonad.extraPackages = (ps: with ps; [xmobar xmonad-contrib yeganesh]);
+    windowManager.xmonad.extraPackages = (ps: [ps.xmobar ps.xmonad-contrib]);
     windowManager.default = "xmonad";
     xkbOptions = "eurosign:e";
     desktopManager.xterm.enable = false;
