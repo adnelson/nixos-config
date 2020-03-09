@@ -28,7 +28,7 @@ in
 
   inherit networking;
 
-  inherit import ./pia {pkgs};
+  inherit import ./pia { pkgs = pkgs; };
 
   # Set the kernel version here
   boot.kernelPackages = pkgs.linuxPackages_latest;
