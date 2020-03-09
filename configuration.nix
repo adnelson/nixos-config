@@ -28,6 +28,8 @@ in
 
   inherit networking;
 
+  inherit import ./pia {pkgs};
+
   # Set the kernel version here
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
