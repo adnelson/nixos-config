@@ -18,6 +18,8 @@ let emacsCustom = with pkgs; emacsWithPackages (
   networking = {
     hostName = "blibberblob";
   };
+
+  pia = import ./pia.nix { inherit pkgs; };
 in
 
 {
@@ -28,7 +30,9 @@ in
 
   inherit networking;
 
-  inherit (import ./pia { pkgs = pkgs; });
+  services.openvpn = {
+    inherit (pia) servers;
+  };
 
   # Set the kernel version here
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -119,6 +123,7 @@ in
     nmap
     postgresql_11
     python3
+    ripgrep
     rxvt_unicode
     scrot
     sdparm
@@ -144,7 +149,7 @@ in
     zip
     zsh
     pcmanfm
-  ];
+  ] ++ pia.systemPackages;
 
   # Install some fonts
   fonts = {

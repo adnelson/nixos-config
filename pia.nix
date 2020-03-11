@@ -3,6 +3,7 @@
 with pkgs;
 with builtins;
 
+# TODO add auth-nocache
 let pia-config = with pkgs; stdenv.mkDerivation rec {
   name = "pia-config";
 
@@ -13,7 +14,7 @@ let pia-config = with pkgs; stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.privateinternetaccess.com/openvpn/openvpn.zip";
-    sha256 = "6f899ff3a040be09499c90091f1f91859487ab176c54c610f6d4be2c74e5f32f";
+    sha256 = "1idrhhgglybnvb191d3m068xpcmiaxgv66z66w9580m0f2wapff1";
   };
 
   unpackPhase = ''
@@ -37,19 +38,20 @@ let pia-config = with pkgs; stdenv.mkDerivation rec {
     sed -i "s|crl.rsa.2048.pem|$out/certs/\0|g" "$out"/config/*.ovpn
     sed -i "s|ca.rsa.2048.crt|$out/certs/\0|g" "$out"/config/*.ovpn
 
-    sed -i "s|auth-user-pass|auth-user-pass ${./pia-login.conf}|g" "$out"/config/*.ovpn
+    sed -i "s|auth-user-pass|auth-user-pass /root/pia-login.conf|g" "$out"/config/*.ovpn
   '';
 };
 in
+
 {
-  environment.systemPackages = with pkgs; [
+  systemPackages = with pkgs; [
     openresolv
   ];
 
   # Configure all our servers
   # Use with `sudo systemctl start openvpn-us-east`
-  services.openvpn.servers = let
-    vpn_str = with (import <nixpkgs> {}).lib.strings;
+  servers = let
+    vpn_str = with lib.strings;
               file: removeSuffix ".ovpn" (toLower (replaceStrings [" "] ["-"] file));
   in
   foldl' (init: file: init // {
