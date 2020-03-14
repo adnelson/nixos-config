@@ -17,6 +17,7 @@ let emacsCustom = with pkgs; emacsWithPackages (
 
   networking = {
     hostName = "blibberblob";
+    wireless.enable = true;
   };
 
   pia = import ./pia.nix { inherit pkgs; };
