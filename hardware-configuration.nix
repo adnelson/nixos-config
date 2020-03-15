@@ -8,7 +8,7 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -16,16 +16,6 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/ab2b8976-51e8-494e-ad51-dbbe85120493";
       fsType = "ext4";
-    };
-
-  fileSystems."/var/lib/docker/overlay2/e1232b4bed06e9b8669c236fbd686536839f6902c53295e2d528b20bca421253/merged" =
-    { device = "overlay";
-      fsType = "overlay";
-    };
-
-  fileSystems."/var/lib/docker/containers/14cf87a249b0138ddb970f51a11eecf37b730296bafb9c89e0fc776f667e61b5/mounts/shm" =
-    { device = "shm";
-      fsType = "tmpfs";
     };
 
   swapDevices =
