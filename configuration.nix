@@ -4,23 +4,30 @@
 
 { config, pkgs, ... }:
 
-let emacsCustom = with pkgs; emacsWithPackages (
-  epkgs: with epkgs; [
-    monokai-theme
-    smex
-    nix-mode
-    haskell-mode
-    reason-mode
-    rust-mode
-  ]
-);
-
-  networking = {
-    hostName = "blibberblob";
-    wireless.enable = true;
-  };
+let
+  emacsCustom = with pkgs; emacsWithPackages (
+    epkgs: with epkgs; [
+      monokai-theme
+      smex
+      nix-mode
+      haskell-mode
+      reason-mode
+      rust-mode
+    ]
+  );
 
   pia = import ./pia.nix { inherit pkgs; };
+
+  rtl8812au = config.boot.kernelPackages.rtl8812au.override {
+    stdenv = pkgs.addAttrsToDerivation rec {
+      name = "rtl8812au-aircrack-ng-${version}";
+      version = "5.1.5+69";
+      src = builtins.fetchGit {
+        rev = "be92ddcdb2ef989d14bd4ed10d3a40e3259b4e44";
+        url = "https://github.com/aircrack-ng/rtl8812au.git";
+      };
+    } pkgs.stdenv;
+  };
 in
 
 {
@@ -29,7 +36,8 @@ in
       ./hardware-configuration.nix
     ];
 
-  inherit networking;
+  networking.hostName = "blibberblob";
+  # networking.wireless.enable = true;
 
   services.openvpn = {
     inherit (pia) servers;
@@ -37,6 +45,9 @@ in
 
   # Set the kernel version here
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # hardware.firmware = [ rtl8812au ];
+  # hardware.enableRedistributableFirmware = true;
+  boot.extraModulePackages = [ rtl8812au ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -75,9 +86,9 @@ in
   hardware.pulseaudio.support32Bit = true;
 
   # Allow virtualbox and docker to run
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = false;
-  virtualisation.docker.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.guest.enable = false;
+  # virtualisation.docker.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
