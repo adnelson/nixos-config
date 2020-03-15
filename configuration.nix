@@ -37,7 +37,7 @@ in
     ];
 
   networking.hostName = "blibberblob";
-  # networking.wireless.enable = true;
+  networking.wireless.enable = true;
 
   services.openvpn = {
     inherit (pia) servers;
@@ -86,9 +86,9 @@ in
   hardware.pulseaudio.support32Bit = true;
 
   # Allow virtualbox and docker to run
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.guest.enable = false;
-  # virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = false;
+  virtualisation.docker.enable = true;
 
   # Use NTP for system time
   services.ntp.enable = true;
@@ -128,6 +128,7 @@ in
     hdparm
     htop
     irssi
+    jq
     jwhois
     lsof
     man
