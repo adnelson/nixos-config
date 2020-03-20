@@ -37,7 +37,8 @@ in
     ];
 
   networking.hostName = "blibberblob";
-  networking.wireless.enable = true;
+  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
 
   services.openvpn = {
     inherit (pia) servers;
@@ -196,7 +197,7 @@ in
     isNormalUser = true;
     home = "/home/allen";
     description = "Allen Nelson";
-    extraGroups = ["wheel" "docker" "audio"];
+    extraGroups = ["wheel" "docker" "audio" "networkmanager"];
     shell = "/run/current-system/sw/bin/zsh";
     openssh.authorizedKeys.keys = [
       (builtins.readFile ./id_rsa.pub)
