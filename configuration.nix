@@ -177,7 +177,7 @@ in
       source-serif-pro
       terminus_font
       ubuntu_font_family
-      dejavu_font
+      dejavu_fonts
       ipafont
     ];
 
