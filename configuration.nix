@@ -13,6 +13,8 @@ let
       haskell-mode
       reason-mode
       rust-mode
+      markdown-mode
+      yaml-mode
     ]
   );
 
@@ -37,7 +39,8 @@ in
     ];
 
   networking.hostName = "blibberblob";
-  # networking.wireless.enable = true;
+
+  # See https://nixos.org/nixos/manual/index.html#sec-networkmanager
   networking.networkmanager.enable = true;
 
   services.openvpn = {
@@ -46,8 +49,6 @@ in
 
   # Set the kernel version here
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # hardware.firmware = [ rtl8812au ];
-  # hardware.enableRedistributableFirmware = true;
   boot.extraModulePackages = [ rtl8812au ];
 
   # Use the GRUB 2 boot loader.
