@@ -101,13 +101,6 @@ in
   # Set time zone to Chicago
   time.timeZone = "America/Chicago";
 
-  # Select internationalisation properties.
-  i18n = {
-    consoleFont = "lat9w-16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-  };
-
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpitool
@@ -184,7 +177,45 @@ in
       source-serif-pro
       terminus_font
       ubuntu_font_family
+      dejavu_font
+      ipafont
     ];
+
+    # Below: see https://functor.tokyo/blog/2018-10-01-japanese-on-nixos
+    fontConfig.ultimate.enable = true;
+    fontconfig.defaultFonts = {
+      monospace = [
+        "Terminus"
+        "Source Code Pro"
+        "IPAGothic"
+      ];
+      sansSerif = [
+        "Source Sans Pro"
+        "Source Han Sans JP"
+        "DejaVu Sans"
+        "IPAPGothic"
+      ];
+      serif = [
+        "Source Serif Pro"
+        "DejaVu Serif"
+        "IPAPMincho"
+      ];
+    };
+  };
+
+  # Select internationalisation properties.
+  i18n = {
+    consoleFont = "lat9w-16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_US.UTF-8";
+
+    # Below: see https://functor.tokyo/blog/2018-10-01-japanese-on-nixos
+    # This enables "fcitx" as your input method editor (IME). This is an
+    # easy-to-use IME. It supports many different input methods.
+    inputMethod.enabled = "fcitx";
+
+    # This enables "mozc" as an input method in "fcitx".
+    inputMethod.fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
   };
 
   # Enable the OpenSSH daemon.
