@@ -182,7 +182,7 @@ in
     ];
 
     # Below: see https://functor.tokyo/blog/2018-10-01-japanese-on-nixos
-    fontConfig.ultimate.enable = true;
+    fontconfig.ultimate.enable = true;
     fontconfig.defaultFonts = {
       monospace = [
         "Terminus"
