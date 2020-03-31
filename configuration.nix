@@ -109,6 +109,7 @@ in
     alsaPlugins
     alsaUtils
     ansible
+    autossh
     awscli
     cpufrequtils
     cryptsetup
@@ -129,6 +130,7 @@ in
     man
     netcat
     nmap
+    pcmanfm
     postgresql_11
     python3
     ripgrep
@@ -143,20 +145,19 @@ in
     unzip
     vim
     wget
+    xclip
     xfontsel
     xlibs.xev
     xlibs.xinput
     xlibs.xmessage
     xlibs.xmodmap
+    xmobar
     xorg.xkill
     xpdf
-    xsel
-    xclip
-    xmobar
     xscreensaver
+    xsel
     zip
     zsh
-    pcmanfm
   ] ++ pia.systemPackages;
 
   # Install some fonts
