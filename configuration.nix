@@ -5,18 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  emacsCustom = with pkgs; emacsWithPackages (
-    epkgs: with epkgs; [
-      monokai-theme
-      smex
-      nix-mode
-      haskell-mode
-      reason-mode
-      rust-mode
-      markdown-mode
-      yaml-mode
-    ]
-  );
+  emacsCustom = import ./emacs.nix { inherit pkgs; };
 
   pia = import ./pia.nix { inherit pkgs; };
 
