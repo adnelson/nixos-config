@@ -19,6 +19,65 @@ let
       };
     } pkgs.stdenv;
   };
+
+  systemPackages = with pkgs; [
+    acpitool
+    ag
+    alsaLib
+    alsaPlugins
+    alsaUtils
+    ansible
+    autossh
+    awscli
+    compton
+    cpufrequtils
+    cryptsetup
+    curl
+    ddrescue
+    dmenu
+    emacsCustom
+    feh
+    file
+    firefoxWrapper
+    gitMinimal
+    hdparm
+    htop
+    irssi
+    jq
+    jwhois
+    lsof
+    man
+    netcat
+    nmap
+    pcmanfm
+    postgresql_11
+    python3
+    ripgrep
+    rxvt_unicode
+    scrot
+    sdparm
+    stdmanpages
+    tcpdump
+    telnet
+    terminator
+    tmux
+    unzip
+    vim
+    wget
+    xclip
+    xfontsel
+    xlibs.xev
+    xlibs.xinput
+    xlibs.xmessage
+    xlibs.xmodmap
+    xmobar
+    xorg.xkill
+    xpdf
+    xscreensaver
+    xsel
+    zip
+    zsh
+  ] ++ pia.systemPackages;
 in
 
 {
@@ -91,63 +150,7 @@ in
   time.timeZone = "America/Chicago";
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    acpitool
-    ag
-    alsaLib
-    alsaPlugins
-    alsaUtils
-    ansible
-    autossh
-    awscli
-    cpufrequtils
-    cryptsetup
-    curl
-    ddrescue
-    dmenu
-    emacsCustom
-    feh
-    file
-    firefoxWrapper
-    gitMinimal
-    hdparm
-    htop
-    irssi
-    jq
-    jwhois
-    lsof
-    man
-    netcat
-    nmap
-    pcmanfm
-    postgresql_11
-    python3
-    ripgrep
-    rxvt_unicode
-    scrot
-    sdparm
-    stdmanpages
-    tcpdump
-    telnet
-    terminator
-    tmux
-    unzip
-    vim
-    wget
-    xclip
-    xfontsel
-    xlibs.xev
-    xlibs.xinput
-    xlibs.xmessage
-    xlibs.xmodmap
-    xmobar
-    xorg.xkill
-    xpdf
-    xscreensaver
-    xsel
-    zip
-    zsh
-  ] ++ pia.systemPackages;
+  environment.systemPackages = systemPackages;
 
   # Install some fonts
   fonts = {
