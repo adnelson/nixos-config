@@ -22,6 +22,7 @@ let
 
   systemPackages = with pkgs; [
     acpitool
+    alacritty
     ag
     alsaLib
     alsaPlugins
@@ -29,6 +30,7 @@ let
     ansible
     autossh
     awscli
+    brave
     compton
     cpufrequtils
     cryptsetup
@@ -46,6 +48,7 @@ let
     jq
     jwhois
     lsof
+    maim
     man
     netcat
     nmap
@@ -53,7 +56,6 @@ let
     postgresql_11
     python3
     ripgrep
-    rxvt_unicode
     scrot
     sdparm
     stdmanpages
