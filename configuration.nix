@@ -64,6 +64,7 @@ let
     telnet
     terminator
     tmux
+    tree
     unzip
     vim
     wget
