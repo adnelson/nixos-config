@@ -135,6 +135,8 @@ in
   # Uncomment to enable opengl
   # hardware.opengl.driSupport32Bit = true;
 
+  services.dbus.enable = true;
+
   # Enable sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
