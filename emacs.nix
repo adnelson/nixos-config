@@ -11,7 +11,7 @@ pkgs.emacsWithPackages (
     rust-mode
     smex
     systemd
-    urweb-mode
+    typescript-mode
     yaml-mode
   ]
 )
