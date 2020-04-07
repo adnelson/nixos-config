@@ -135,6 +135,7 @@ in
   # Uncomment to enable opengl
   # hardware.opengl.driSupport32Bit = true;
 
+  # Start dbus running to enable notifications (WIP)
   services.dbus.enable = true;
 
   # Enable sound
