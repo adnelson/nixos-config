@@ -47,6 +47,7 @@ let
     irssi
     jq
     jwhois
+    libnotify
     lsof
     maim
     man
