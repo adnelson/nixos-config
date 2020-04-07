@@ -55,6 +55,7 @@ let
     nmap
     pcmanfm
     postgresql_11
+    pstree
     python3
     ripgrep
     scrot
