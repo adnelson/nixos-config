@@ -7,7 +7,6 @@ pkgs.emacsWithPackages (
     markdown-mode
     monokai-theme
     nix-mode
-    ocaml-mode
     reason-mode
     rust-mode
     smex
