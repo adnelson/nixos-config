@@ -241,7 +241,4 @@ in
   users.extraUsers.root.shell = "/run/current-system/sw/bin/zsh";
   # TODO figure this out
   # users.extraUsers.root.ssh.startAgent = true;
-
-  # Run postgres daemon
-  services.postgresql.enable = true;
 }
